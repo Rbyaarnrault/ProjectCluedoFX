@@ -2,23 +2,23 @@ package controler;
 
 import view.MainView;
 import controler.Controler;
-import model.Model;
+import model.DATASCluedoHP;
+import model.EtatPartie;
 
 public class Controler {
 
     private static MainView vue_;
-    private static Model model_;
-
-    public Controler() {
-
-    }
+    private static EtatPartie model_;
+    private static DATASCluedoHP datas;
 
     public static void main(String[] args) {
         vue_ = new MainView(new Controler());
-        model_ = new Model();
+
+        String[] nomJoueurs = args;
+        model_ = new EtatPartie(nomJoueurs, datas.nomSuspects, datas.nomObjets, datas.nomLieux);
     }
 
-    public Model getModel() {
+    public EtatPartie getModel() {
         return model_;
     }
 
