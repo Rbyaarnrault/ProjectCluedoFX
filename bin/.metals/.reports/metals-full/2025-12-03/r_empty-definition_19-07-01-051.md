@@ -1,6 +1,18 @@
+error id: file:///C:/Users/barra/Desktop/Ryan/Perso/JavaProjects/ProjectCluedoFX/src/model/EtatPartie.java:java/util/ArrayList#remove().
+file:///C:/Users/barra/Desktop/Ryan/Perso/JavaProjects/ProjectCluedoFX/src/model/EtatPartie.java
+empty definition using pc, found symbol in pc: java/util/ArrayList#remove().
+empty definition using semanticdb
+empty definition using fallback
+non-local guesses:
+
+offset: 2170
+uri: file:///C:/Users/barra/Desktop/Ryan/Perso/JavaProjects/ProjectCluedoFX/src/model/EtatPartie.java
+text:
+```scala
 package model;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Random;
 
@@ -9,14 +21,13 @@ public class EtatPartie {
     private Modele modele_;
     private Solution solution_;
     private ArrayList<Joueur> joueurs_;
-    private ArrayList<Carte> listeCartes_;
+    private ArrayList<Carte> cartes_;
     private int nbJoueurs_;
 
     public EtatPartie(Modele modele_) {
         this.modele_ = modele_;
         this.joueurs_ = this.modele_.getJoueurs();
         this.nbJoueurs_ = this.joueurs_.size();
-        this.listeCartes_ = this.modele_.getCartes();
 
         // Solution aléatoire
         Random rand = new Random();
@@ -44,18 +55,37 @@ public class EtatPartie {
         // Mélange aléatoire des cartes
         Collections.shuffle(cartesDistrib);
 
-        for (int j = 0; j < nbCartesParJoueur; j++) { 
+        for (int i = 0; i < nbJoueurs_; i++) { // Pour chaque Joueur
 
-            for (int i = 0; i < nbJoueurs_; i++) {
+            for (int j = 0; j < nbCartesParJoueur; j++) {
                 Carte c = cartesDistrib.get(0);
                 joueurs_.get(i).ajouterCarteMain(c); // Affecte la première carte au Joueur j
                 cartesDistrib.remove(0);
             }
         }
+
+        for (int j = 0; j < nbCartesParJoueur; j++) { 
+
+            for (int i = 0; i < nbJoueurs_; i++) {
+                Carte c = cartesDistrib.get(0);
+                joueurs_.get(i).ajouterCarteMain(c); // Affecte la première carte au Joueur j
+                cartesDistrib.remove@@(0);
+            }
+        }
+
+
     }
     
 
     public Solution getSolution() {
         return this.solution_;
     }
+
 }
+
+```
+
+
+#### Short summary: 
+
+empty definition using pc, found symbol in pc: java/util/ArrayList#remove().
